@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b0f">
+  <title>Dockerfile AI | DevOps Toolkit</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="/">DOCKER<span>FILE AI.</span></a>
+    <div class="nav-label"><span class="dot"></span> LLM-POWERED DEV TOOL</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">YOUR DEVOPS WORKFLOW, SIMPLIFIED</p>
+      <h1>From idea to <span>Dockerfile.</span></h1>
+      <p class="subtitle">
+        Describe your application. Let AI generate a Dockerfile
+        tailored to your technology and deployment needs.
+      </p>
+    </section>
+
+    <section class="workspace">
+      <div class="panel input-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">STEP 01</p>
+            <h2>Application details</h2>
+          </div>
+          <span class="step-tag">CONFIGURE</span>
+        </div>
+
+        <form id="generatorForm">
+          <label for="language">Technology stack</label>
+          <select id="language" required>
+            <option value="Python">Python</option>
+            <option value="Node.js">Node.js</option>
+            <option value="Java">Java</option>
+            <option value="Go">Go</option>
+            <option value="PHP">PHP</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="description">Describe your application</label>
+          <textarea
+            id="description"
+            rows="6"
+            maxlength="4000"
+            required
+            placeholder="Example: A Flask REST API with a requirements.txt file. The entry point is app.py and it listens on port 5000."
+          ></textarea>
+          <div class="field-note">
+            Be specific about dependencies, entry points, and runtime versions.
+          </div>
+
+          <label for="port">Application port <span>(optional)</span></label>
+          <input id="port" type="number" min="1" max="65535"
+                 placeholder="e.g. 5000">
+
+          <button type="submit" id="generateBtn" class="primary-btn">
+            <span id="buttonText">✦ Generate Dockerfile</span>
+          </button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div class="panel output-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">STEP 02</p>
+            <h2>Your Dockerfile</h2>
+          </div>
+          <span class="file-tag">DOCKERFILE</span>
+        </div>
+
+        <div class="code-toolbar">
+          <span><span class="dot"></span> Generated output</span>
+          <div class="toolbar-actions">
+            <button type="button" id="copyBtn" disabled>Copy</button>
+            <button type="button" id="downloadBtn" disabled>Download</button>
+          </div>
+        </div>
+
+        <pre class="code-output"><code id="output"># Your generated Dockerfile will appear here.
+
+# Describe your application and click
+# "Generate Dockerfile" to get started.</code></pre>
+
+        <div class="output-footer">
+          <span>AI-GENERATED CONFIGURATION</span>
+          <span>Review before building</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-strip">
+      <article>
+        <span class="info-icon">01</span>
+        <h3>Describe</h3>
+        <p>Specify your stack, dependencies, and application entry point.</p>
+      </article>
+      <article>
+        <span class="info-icon">02</span>
+        <h3>Generate</h3>
+        <p>The LLM transforms your requirements into Docker instructions.</p>
+      </article>
+      <article>
+        <span class="info-icon">03</span>
+        <h3>Review</h3>
+        <p>Inspect, test, and refine the output before using it.</p>
+      </article>
+    </section>
+
+    <p class="disclaimer">
+      AI output may contain errors. Review all instructions and test the
+      Dockerfile in a safe environment before deploying.
+    </p>
+  </main>
+
+  <footer>
+    <a class="brand" href="/">DOCKER<span>FILE AI.</span></a>
+    <p>Built for developers who automate.</p>
+  </footer>
+</body>
+</html>
