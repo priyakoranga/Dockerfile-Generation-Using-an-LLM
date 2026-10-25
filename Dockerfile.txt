@@ -1,0 +1,31 @@
+FROM python:3.11-slim
+
+# Create a non-root user and group
+RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies (minimal)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application source
+COPY . .
+
+# Adjust permissions
+RUN chown -R appuser:appgroup /app
+
+# Expose default application port (override with -p at runtime if needed)
+EXPOSE 8080
+
+# Switch to non-root user
+USER appuser
+
+# Default command using Gunicorn; assumes a Flask app with entry point `app:app`
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]
